@@ -14,6 +14,17 @@ class OCESocial {
     }
 	
     /**
+     * updateProfilePicByID
+     * updates user profile image
+     */
+	 updateProfilePicByID(userID, file, token, sessionID) {
+        console.log('[updateProfilePicByID][me]', userID, file);
+
+        const [promise, abort] = api.put(`${contentServer}/osn/social/api/v1/pictures/${userID}`, file, token, true, sessionID);
+        return [promise, abort];
+    }
+	
+    /**
      * getProfilePic
      * returns profile info
      */
