@@ -24,7 +24,8 @@ const setup = {
 	stats: {
 		following:0,
 		followers:0,
-	}
+	},
+	props:{}
 };
 
 /**
