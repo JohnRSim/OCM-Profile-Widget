@@ -25,12 +25,37 @@ class OCESocial {
     }
 	
     /**
+     * createUserProperty
+     * adds follower UserID to following
+     */
+	 createUserProperty(userID, prop, token, sessionID) {
+        console.log(`[createUserProperty][${userID}]`);
+
+        const data = prop;
+
+        const [promise, abort] = api.post(`${contentServer}/osn/social/api/v1/people/${userID}/properties`, data, token, true, sessionID);
+        return [promise, abort];
+    }
+
+    /**
+     * getAllUserProperties
+     * adds follower UserID to following
+     */
+    getAllUserProperties(userID, token) {
+        console.log(`[getAllUserProperties][${userID}]`);
+
+        const ms = Date.now();
+        const [promise, abort] = api.get(`${contentServer}/osn/social/api/v1/people/${userID}/properties?cb=${ms}`, token);
+        return [promise, abort];
+    }
+
+    /**
      * getProfilePic
      * returns profile info
      */
     getProfilePic(pictureID, token) {
         console.log('[getProfilePic][me]');
-        const [promise, abort] = api.get(`${contentServer}/osn/social/api/v1/pictures/${pictureID}/profile`);
+        const [promise, abort] = api.get(`${contentServer}/osn/social/api/v1/pictures/${pictureID}/profile`, token);
         return [promise, abort];
     }
 
